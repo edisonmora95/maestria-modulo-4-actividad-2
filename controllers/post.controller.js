@@ -23,7 +23,7 @@ const addOne = async (req, res) => {
     return res.status(201).json({
       message: "Post created successfully",
       data: result,
-    })
+    });
   } catch (error) {
     console.error(error);
     return res.status(500).json({
@@ -37,14 +37,15 @@ const addOne = async (req, res) => {
  * @param {Request} req
  * @param {Response} res
  */
- const findAll = async (req, res) => {
+const findAll = async (req, res) => {
   try {
     const result = await PostService.findAll();
 
     return res.status(201).json({
       message: "Posts retrieved successfully",
-      result,
-    })
+      data: result,
+      count: result.length,
+    });
   } catch (error) {
     console.error(error);
     return res.status(500).json({
