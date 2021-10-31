@@ -21,8 +21,27 @@ const findOne = async (id) => {
   return result;
 };
 
+/**
+ * @param {string} id
+ */
+const updateOne = async (id, data) => {
+  const query = {
+    _id: id,
+  };
+  const update = {
+    $set: data,
+  };
+  const options = {
+    lean: true,
+    new: true,
+  };
+  const result = await PostModel.findOneAndUpdate(query, update, options);
+  return result;
+};
+
 module.exports = {
   findAll,
   addOne,
   findOne,
+  updateOne,
 };
