@@ -10,7 +10,19 @@ const addOne = async (data) => {
   return result;
 };
 
+/**
+ * @param {string} id
+ */
+const findOne = async (id) => {
+  const query = {
+    _id: id,
+  };
+  const result = await PostModel.findOne(query);
+  return result;
+};
+
 module.exports = {
   findAll,
   addOne,
+  findOne,
 };

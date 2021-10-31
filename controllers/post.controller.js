@@ -55,7 +55,36 @@ const findAll = async (req, res) => {
   }
 };
 
+/**
+ * @param {Request} req
+ * @param {Response} res
+ */
+const findOne = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await PostService.findOne(id);
+
+    if (!result) {
+      return res.status(404).json({
+        message: "Post not found",
+      });
+    }
+
+    return res.status(201).json({
+      message: "Post retrieved successfully",
+      data: result,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      error,
+      message: "Internal Server Error",
+    });
+  }
+};
+
 module.exports = {
   addOne,
   findAll,
+  findOne,
 };
