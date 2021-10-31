@@ -123,9 +123,41 @@ const updateOne = async (req, res) => {
   }
 };
 
+/**
+ * @param {Request} req
+ * @param {Response} res
+ */
+const deleteOne = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const post = await PostService.findOne(id);
+
+    if (!post) {
+      return res.status(404).json({
+        message: "Post not found",
+      });
+    }
+
+    const result = await PostService.deleteOne(id);
+
+    return res.status(204).json({
+      message: "Post deleted successfully",
+      data: result,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      error,
+      message: "Internal Server Error",
+    });
+  }
+};
+
 module.exports = {
   addOne,
   findAll,
   findOne,
   updateOne,
+  deleteOne,
 };

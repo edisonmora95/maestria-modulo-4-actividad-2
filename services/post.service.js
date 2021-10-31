@@ -39,9 +39,21 @@ const updateOne = async (id, data) => {
   return result;
 };
 
+/**
+ * @param {string} id
+ */
+const deleteOne = async (id) => {
+  const query = {
+    _id: id,
+  };
+  const result = await PostModel.deleteOne(query);
+  return result;
+};
+
 module.exports = {
   findAll,
   addOne,
   findOne,
   updateOne,
+  deleteOne,
 };
