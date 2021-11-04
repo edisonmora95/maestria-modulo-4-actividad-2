@@ -11,7 +11,15 @@ const findByEmail = async (email) => {
   return result ? result.toObject() : null;
 };
 
+const findById = async (_id) => {
+  const query = { _id };
+  const result = await UserModel.findOne(query);
+  return result ? result.toObject() : null;
+};
+
+
 module.exports = {
   addOne,
   findByEmail,
+  findById,
 };
