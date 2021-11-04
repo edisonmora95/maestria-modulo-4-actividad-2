@@ -83,8 +83,27 @@ const login = async (req, res) => {
   }
 };
 
+/**
+ * @param {Request} req
+ * @param {Response} res
+ */
+ const logout = async (req, res) => {
+  try {
+    req.session.destroy();
+
+    return res.status(204).send();
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      error,
+      message: "Internal Server Error",
+    });
+  }
+};
+
 module.exports = {
   addOne,
   login,
+  logout,
 };
 
