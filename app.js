@@ -6,12 +6,14 @@ const mongoose = require("mongoose");
 const logger = require("morgan");
 
 require("./config/db.config");
+const session = require("./config/session.config");
 
 const app = express();
 
 /** Middlewares */
 app.use(logger("dev"));
 app.use(express.json());
+app.use(session);
 
 /** Routes */
 const routes = require("./config/routes.config");

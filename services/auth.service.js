@@ -10,6 +10,15 @@ const hashPassword = (password) => {
   return hash;
 };
 
+/**
+ * @param {string} plainText
+ * @param {string} hashed
+ */
+const comparePasswords = (plainText, hashed) => {
+  return bcrypt.compareSync(plainText, hashed);
+};
+
 module.exports = {
   hashPassword,
+  comparePasswords,
 };

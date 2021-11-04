@@ -7,7 +7,7 @@ const AuthService = require("../services/auth.service");
  * @param {Request} req
  * @param {Response} res
  */
- const addOne = async (req, res) => {
+const addOne = async (req, res) => {
   try {
     const {
       name,
@@ -38,7 +38,53 @@ const AuthService = require("../services/auth.service");
   }
 };
 
+/**
+ * @param {Request} req
+ * @param {Response} res
+ */
+const login = async (req, res) => {
+  try {
+    const {
+      email,
+      password,
+    } = req.body;
+
+    const user = await UserService.findByEmail(email);
+
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found",
+      });
+    }
+
+    const validPassword = AuthService.comparePasswords(password, user.password);
+    if (!validPassword) {
+      return res.status(401).json({
+        message: "Incorrect password",
+      });
+    }
+
+    req.session.userId = user._id;
+    const data = {
+      ...user,
+    };
+    delete data.password;
+
+    return res.status(201).json({
+      message: "User logged successfully",
+      data,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      error,
+      message: "Internal Server Error",
+    });
+  }
+};
+
 module.exports = {
   addOne,
+  login,
 };
 

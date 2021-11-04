@@ -1,11 +1,11 @@
-const expressSession = require('express-session');
-const connectMongo = require('connect-mongo');
-const mongoose = require('mongoose');
+const expressSession = require("express-session");
+const connectMongo = require("connect-mongo");
+const mongoose = require("mongoose");
 
 const MongoStore = connectMongo(expressSession);
 
 const session = expressSession({
-  secret: process.env.SESSION_SECRET || 'super secret (change it)',
+  secret: process.env.SESSION_SECRET || "super_secret",
   saveUninitialized: false,
   resave: false,
   cookie: {

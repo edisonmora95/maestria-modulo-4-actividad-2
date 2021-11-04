@@ -5,6 +5,13 @@ const addOne = async (data) => {
   return result;
 };
 
+const findByEmail = async (email) => {
+  const query = { email };
+  const result = await UserModel.findOne(query);
+  return result ? result.toObject() : null;
+};
+
 module.exports = {
   addOne,
+  findByEmail,
 };
