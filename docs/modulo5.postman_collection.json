@@ -9,6 +9,108 @@
 			"name": "M5",
 			"item": [
 				{
+					"name": "Actividad 1",
+					"item": [
+						{
+							"name": "Get Employees",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/employees?page=1&user=true&badges=black",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"employees"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "user",
+											"value": "true"
+										},
+										{
+											"key": "badges",
+											"value": "black"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Oldest",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/employees/oldest",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"employees",
+										"oldest"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get By Name",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/employees/sue",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"employees",
+										"sue"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add One",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Edison\",\r\n    \"age\": 26,\r\n    \"phone\": {\r\n        \"personal\": \"992556793\"\r\n    },\r\n    \"privileges\": \"user\",\r\n    \"favorites\": {\r\n        \"artist\": \"Green Day\"\r\n    },\r\n    \"finished\": [5, 7],\r\n    \"badges\": [\"blue\"],\r\n    \"points\": [\r\n        {\r\n            \"points\": 10,\r\n            \"bonus\": 2\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/employees",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"employees"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "Actividad 2",
 					"item": [
 						{
@@ -117,6 +219,112 @@
 										"api",
 										"posts",
 										"617ecb7cfc3558e21a090900"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Actividad 3",
+					"item": [
+						{
+							"name": "Add User",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"User 1\",\r\n    \"email\": \"edison_andre_9@hotmail.com\",\r\n    \"password\": \"holamundo\",\r\n    \"bio\": \"Edison\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/users",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"edison_andre_9@hotmail.com\",\r\n    \"password\": \"holamundo\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Logout",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/logout",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"logout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Activate",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/users/6184ad66bcb3b6f4bf5a7686/activate",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"6184ad66bcb3b6f4bf5a7686",
+										"activate"
 									]
 								}
 							},
