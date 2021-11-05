@@ -17,9 +17,21 @@ const findById = async (_id) => {
   return result ? result.toObject() : null;
 };
 
+const activate = async (_id) => {
+  const query = { _id };
+  const update = {
+    $set: {
+      active: true,
+    },
+  };
+  const result = await UserModel.updateOne(query, update);
+  return result;
+};
+
 
 module.exports = {
   addOne,
   findByEmail,
   findById,
+  activate,
 };

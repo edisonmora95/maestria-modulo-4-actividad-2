@@ -2,6 +2,7 @@ const { Request, Response } = require("express");
 
 const UserService = require("../services/user.service");
 const AuthService = require("../services/auth.service");
+const MailService = require("../services/mail.service");
 
 /**
  * @param {Request} req
@@ -24,6 +25,8 @@ const addOne = async (req, res) => {
       password: hashPassword,
       bio,
     });
+
+    MailService.sendRegisterEmail(email, result.toObject());
 
     return res.status(201).json({
       message: "User created successfully",
@@ -51,7 +54,7 @@ const login = async (req, res) => {
 
     const user = await UserService.findByEmail(email);
 
-    if (!user) {
+    if (!user || !user.active) {
       return res.status(404).json({
         message: "User not found",
       });
@@ -87,7 +90,7 @@ const login = async (req, res) => {
  * @param {Request} req
  * @param {Response} res
  */
- const logout = async (req, res) => {
+const logout = async (req, res) => {
   try {
     req.session.destroy();
 
@@ -101,9 +104,30 @@ const login = async (req, res) => {
   }
 };
 
+/**
+ * @param {Request} req
+ * @param {Response} res
+ */
+const activate = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    await UserService.activate(id);
+
+    return res.status(200).send();
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      error,
+      message: "Internal Server Error",
+    });
+  }
+};
+
 module.exports = {
   addOne,
   login,
   logout,
+  activate,
 };
 

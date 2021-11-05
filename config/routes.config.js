@@ -18,5 +18,6 @@ router.delete("/posts/:id", AuthMiddleware.authenticate, PostController.deleteOn
 router.post("/users", UserController.addOne);
 router.post("/login", UserMiddleware.validateLogin, UserController.login);
 router.post("/logout", AuthMiddleware.authenticate, UserController.logout);
+router.get("/users/:id/activate", UserController.activate);
 
 module.exports = router;

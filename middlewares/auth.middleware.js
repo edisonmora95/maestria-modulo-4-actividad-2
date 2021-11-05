@@ -19,6 +19,10 @@ const authenticate = async (req, res, next) => {
     return next({ status: 401, message: "Not authenticated" });
   }
 
+  if (!user.active) {
+    return next({ status: 401, message: "Not authenticated" });
+  }
+
   req.User = user;
   return next();
 };
